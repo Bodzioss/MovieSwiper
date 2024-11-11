@@ -1,6 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using MovieSwiper.Data;
+using MovieSwiper.Services.MovieService;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddScoped<IMovieService, MovieService>();
+
+builder.Services.AddDbContext<AppDbContext>(opt =>
+  opt.UseInMemoryDatabase("MovieSwiperDB"));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
